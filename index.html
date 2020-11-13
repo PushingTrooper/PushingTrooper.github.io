@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+  background-color: black;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+}
+
+.content {
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+  z-index: 4;
+}
+
+.image {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  width: 1920px;
+  height: 1080px;
+}
+
+.myBtn {
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  border: 1px solid white;
+  color: #fff;
+  cursor: pointer;
+}
+
+#myBtn:hover {
+  background: #ddd;
+  color: black;
+  border: 1px solid black;
+}
+</style>
+</head>
+<body>
+
+<video autoplay notmuted loop id="myVideo" class="first" style="display: none;">
+  <source src="video.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
+<!-- <img id="notBlownPic" src="./photo.png" width="1920px" height="1080px" class="image" style="z-index: 2;"> -->
+<img id="blownPic" src="./photo_unlit_better.png" width="1920px" height="1080px" class="image" style="display: none; z-index: 3;">
+
+<div class="content">
+  <button id="startBtn" class="myBtn" onclick="start()">Start</button>
+  <button id="playPause" class="myBtn" style="display: none;" onclick="myFunction()">Blow</button>
+</div>
+
+<script>
+var video = document.getElementById("myVideo");
+var btn = document.getElementById("playPause");
+var isBlown = false;
+
+function start(){
+    video.style.display = "block";
+    video.play();
+    video.mute = false;
+    document.getElementById("startBtn").style.display = "none";
+    btn.style.display = "block";
+}
+
+function myFunction() {
+    if (!isBlown) {
+        btn.innerHTML = "Reset";
+        document.getElementById("blownPic").style.display = "block";
+        isBlown = true;
+    } else {
+        btn.innerHTML = "Blow";
+        document.getElementById("blownPic").style.display = "none";
+        isBlown = false;
+    }
+}
+</script>
+
+</body>
+</html>
